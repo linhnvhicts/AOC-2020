@@ -6,7 +6,10 @@ for single in content:
     letter_range = tuple(single[0].split('-'))
     string = single[2].replace('\n', '')
     count=0
+    #solution 1
     # if single[2].replace('\n', '').count(single[1]) < int(letter_range[0]) or single[2].replace('\n', '').count(single[1]) > int(letter_range[1]):
+    # content_len -= 1
+    # solution 2
     try:
         if string[int(letter_range[0]) - 1] == single[1]:
             count +=1
