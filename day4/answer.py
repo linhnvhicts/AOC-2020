@@ -16,6 +16,9 @@ for single in new_content: # per passport
         batch_keys.append(single_detail_list[0])
     
     if set(valid_keys).issubset(batch_keys):
+        # part 1
+        #valid += 1 
+        # part 2
         if ((1920 <= int(detail_dict['byr']) <= 2002)
         and (2010 <= int(detail_dict['iyr']) <= 2020)
         and (2020 <= int(detail_dict['eyr']) <= 2030)
