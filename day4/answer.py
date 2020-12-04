@@ -16,13 +16,14 @@ for single in new_content: # per passport
         batch_keys.append(single_detail_list[0])
     
     if set(valid_keys).issubset(batch_keys):
-        if (((1920 <= int(detail_dict['byr']) <= 2002) and (len(detail_dict['byr']) == 4))
-        and ((2010 <= int(detail_dict['iyr']) <= 2020) and (len(detail_dict['iyr']) == 4))
-        and ((2020 <= int(detail_dict['eyr']) <= 2030) and (len(detail_dict['eyr']) == 4))
-        and (150 <= int(detail_dict['hgt'].split('cm')[0]) <= 193 if 'cm' in detail_dict['hgt'] else 59 <= int(detail_dict['hgt'].split('in')[0]) <= 76 if 'in' in detail_dict['hgt'] else False)
-        and (bool(re.fullmatch('#[0-9a-f]{6}', detail_dict['hcl'])))
+        if ((1920 <= int(detail_dict['byr']) <= 2002)
+        and (2010 <= int(detail_dict['iyr']) <= 2020)
+        and (2020 <= int(detail_dict['eyr']) <= 2030)
+        and (150 <= int(detail_dict['hgt'].split('cm')[0]) <= 193 if detail_dict['hgt'][-2:] == 'cm' else 59 <= int(detail_dict['hgt'].split('in')[0]) <= 76 if detail_dict['hgt'][-2:] == 'in' else False)
+        and (bool(re.match(r'#[0-9a-f]{6}', detail_dict['hcl'])))
         and(detail_dict['ecl'] in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'])
-        and(bool(re.search('^0\d{8}', detail_dict['pid'])))):
+        and(len(detail_dict['pid']) == 9 and detail_dict['pid'].isdigit())):
+            print(single)
             valid += 1
 print(valid)
 
